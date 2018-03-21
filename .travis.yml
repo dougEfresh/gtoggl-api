@@ -1,0 +1,14 @@
+language: go
+sudo: false
+go:
+  - 1.10.x
+before_install:
+  - go get github.com/mattn/goveralls
+  - go get golang.org/x/tools/cmd/cover
+os:
+  - linux
+script:
+  - go build -race
+  - go test -v ./...  -coverprofile=cover.out
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
