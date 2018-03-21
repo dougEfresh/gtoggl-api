@@ -9,6 +9,6 @@ os:
   - linux
 script:
   - go build -race
-  - go test -v ./...  -coverprofile=cover.out
+  - go test ./...  -coverprofile=cover.out
 after_success:
   - bash <(curl -s https://codecov.io/bash)
