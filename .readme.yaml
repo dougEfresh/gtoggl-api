@@ -1,26 +1,37 @@
 title:
   name: Toggl API for golang
-  description: "Something good"
+  description: "Throttle API for [toggle](https://github.com/toggl/toggl_api_docs/blob/master/toggl_api.md)"
 user: dougEfresh
-project: lambdazap
+project: gtoggl-api
 installation: >-
   ```shell
 
-  $ go get -u github.com/dougEfresh/
+  $ go get -u github.com/dougEfresh/gtoggl-api
 
   ```
 quickStart:
   code: |
     ```go
+    import "github.com/dougEfresh/gtoggl"
+    import "github.com/dougEfresh/gtoggl-api/gtproject"
 
+    func main() {
+      thc, err := gtoggl.NewClient("token")
+      ...
+      tc, err := gtproject.NewClient(thc)
+      ...
+      project,err := tc.Get(1)
+      if err == nil {
+        panic(err)
+       }
+    }
     ```
-  description: ""
+  description: "The gtoggl clients provides throttling"
 examples:
-  - "Example 1"
-  - "Example 2"
+  - "See [godoc][doc] for more examples"
 tests:
   - |
     ```shell
-    $ go test -v
+    $ go test -v ./...
 
     ```

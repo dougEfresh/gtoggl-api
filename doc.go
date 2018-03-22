@@ -18,11 +18,10 @@ Example:
 	   }
        }
 */
-package tapi
+package gtogglapi
 // Copyright 2016 Douglas Chimento.  All rights reserved.
 
 /*
-Package gtoggl access to toggl REST API
 
 Example:
         import "gopkg.in/dougEfresh/gtoggl.v8"
