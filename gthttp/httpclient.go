@@ -216,8 +216,10 @@ func requestWithLimit(c *TogglHttpClient, method, endpoint string, b interface{}
 		return requestWithLimit(c, method, endpoint, b, attempt+1)
 	}
 
-	if body, err = json.Marshal(b); err != nil {
-		return nil, err
+	if b != nil {
+		if body, err = json.Marshal(b); err != nil {
+			return nil, err
+		}
 	}
 
 	req, err := http.NewRequest(method, endpoint, bytes.NewBuffer(body))
