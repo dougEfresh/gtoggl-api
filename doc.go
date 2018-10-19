@@ -19,6 +19,7 @@ Example:
        }
 */
 package gtogglapi
+
 // Copyright 2016 Douglas Chimento.  All rights reserved.
 
 /*
@@ -127,4 +128,3 @@ Example:
 	   }
        }
 */
-

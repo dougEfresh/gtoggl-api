@@ -3,13 +3,14 @@ package gttest
 import (
 	"bytes"
 	"fmt"
-	"github.com/dougEfresh/gtoggl-api/gthttp"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/dougEfresh/gtoggl-api/gthttp"
 )
 
 type TestUtil struct {
@@ -21,7 +22,7 @@ type TestLogger struct {
 
 func (l *TestLogger) Printf(format string, v ...interface{}) {
 	if l.Testing != nil {
-		l.Testing.Logf(format, v)
+		l.Testing.Logf(format, v...)
 	}
 }
 

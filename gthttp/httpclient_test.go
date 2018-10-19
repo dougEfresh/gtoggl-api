@@ -15,7 +15,7 @@ type TestLogger struct {
 }
 
 func (l *TestLogger) Printf(format string, v ...interface{}) {
-	l.Testing.Logf(format, v)
+	l.Testing.Logf(format, v...)
 }
 
 var mockRequest = struct {
