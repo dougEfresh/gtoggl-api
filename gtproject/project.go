@@ -8,10 +8,11 @@ import (
 
 // Toggl Project Definition
 type Project struct {
-	Id   uint64 `json:"id"`
-	WId  uint64 `json:"wid"`
-	CId  uint64 `json:"cid"`
-	Name string `json:"name"`
+	Id        uint64 `json:"id"`
+	WId       uint64 `json:"wid"`
+	CId       uint64 `json:"cid"`
+	Name      string `json:"name"`
+	IsPrivate *bool  `json:"is_private,omitempty"`
 }
 
 type Projects []Project
