@@ -2,16 +2,22 @@ package gtuser
 
 import (
 	"encoding/json"
+	"github.com/dougEfresh/gtoggl-api/gtclient"
 	"github.com/dougEfresh/gtoggl-api/gthttp"
+	"github.com/dougEfresh/gtoggl-api/gtproject"
+	"github.com/dougEfresh/gtoggl-api/gtworkspace"
 )
 
 // Toggl User Definition
 type User struct {
-	Id       uint64 `json:"id"`
-	ApiToken string `json:"api_token"`
-	Email    string `json:"email"`
-	FullName string `json:"fullname"`
-	Timezone string `json:"timezone"`
+	Id         uint64                 `json:"id"`
+	ApiToken   string                 `json:"api_token"`
+	Email      string                 `json:"email"`
+	FullName   string                 `json:"fullname"`
+	Timezone   string                 `json:"timezone"`
+	Clients    gtclient.Clients       `json:"clients"`
+	Projects   gtproject.Projects     `json:"projects"`
+	Workspaces gtworkspace.Workspaces `json:"workspaces"`
 }
 type UserUpdate struct {
 	Email    string `json:"email"`
@@ -54,6 +60,9 @@ type UserClient struct {
 }
 
 func (c *UserClient) Get(realatedData bool) (*User, error) {
+	if realatedData {
+		return userResponse(c.thc.GetRequest(c.relatedEndpoint))
+	}
 	return userResponse(c.thc.GetRequest(c.endpoint))
 }
 
