@@ -1,8 +1,8 @@
 package gtproject
 
 import (
-	"testing"
 	"github.com/dougEfresh/gtoggl-api/test"
+	"testing"
 )
 
 func togglClient(t *testing.T) *ProjectClient {
