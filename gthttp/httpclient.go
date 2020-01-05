@@ -19,7 +19,7 @@ const (
 	DefaultGzipEnabled        = false
 	DefaultUrl                = "https://www.toggl.com/api/v8"
 	DefaultVersion            = "v8"
-	SessionCookieName         = "toggl_api_session_new"
+	SessionCookieName         = "__Host-timer-session"
 	defaultBucket             = "toggl"
 	DefaultRateLimitPerSecond = 3
 )
