@@ -132,6 +132,9 @@ func timeEntryResponse(response *json.RawMessage, error error) (*TimeEntry, erro
 		return nil, err
 	}
 	var t TimeEntry
+	if *tResp.Data == nil {
+		return nil, nil
+	}
 	err = json.Unmarshal(*tResp.Data, &t)
 	if err != nil {
 		return nil, err
