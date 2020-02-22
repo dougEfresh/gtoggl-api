@@ -6,14 +6,14 @@ project: gtoggl-api
 installation: >-
   ```shell
 
-  $ go get -u github.com/dougEfresh/gtoggl-api
+  $ go get -u github.com/tumb1er/gtoggl-api
 
   ```
 quickStart:
   code: |
     ```go
     import "github.com/dougEfresh/gtoggl"
-    import "github.com/dougEfresh/gtoggl-api/gtproject"
+    import "github.com/tumb1er/gtoggl-api/gtproject"
 
     func main() {
       thc, err := gtoggl.NewClient("token")

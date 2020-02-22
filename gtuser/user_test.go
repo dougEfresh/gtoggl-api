@@ -1,7 +1,7 @@
 package gtuser
 
 import (
-	"github.com/dougEfresh/gtoggl-api/test"
+	"github.com/tumb1er/gtoggl-api/test"
 	"testing"
 )
 

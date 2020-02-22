@@ -1,19 +1,21 @@
 # Toggl API for golang
 
+This is a fork of github.com/dougEfresh/gtoggl-api that is currently unavailable.
+
 Throttle API for [toggle](https://github.com/toggl/toggl_api_docs/blob/master/toggl_api.md)
 
 [![GoDoc][doc-img]][doc] [![Build Status][ci-img]][ci] [![Coverage Status][cov-img]][cov] [![Go Report][report-img]][report]
 
 ## Installation 
 ```shell
-$ go get -u github.com/dougEfresh/gtoggl-api
+$ go get -u github.com/tumb1er/gtoggl-api
 ```
 
 ## Quick Start
 
 ```go
 import "github.com/dougEfresh/gtoggl"
-import "github.com/dougEfresh/gtoggl-api/gtproject"
+import "github.com/tumb1er/gtoggl-api/gtproject"
 
 func main() {
   thc, err := gtoggl.NewClient("token")
@@ -68,8 +70,8 @@ This project is licensed under the Apache License - see the [LICENSE](LICENSE) f
 
 ### TODO 
 
-[doc-img]: https://godoc.org/github.com/dougEfresh/gtoggl-api?status.svg
-[doc]: https://godoc.org/github.com/dougEfresh/gtoggl-api
+[doc-img]: https://godoc.org/github.com/tumb1er/gtoggl-api?status.svg
+[doc]: https://godoc.org/github.com/tumb1er/gtoggl-api
 [ci-img]: https://travis-ci.org/dougEfresh/gtoggl-api.svg?branch=master
 [ci]: https://travis-ci.org/dougEfresh/gtoggl-api
 [cov-img]: https://codecov.io/gh/dougEfresh/gtoggl-api/branch/master/graph/badge.svg
@@ -77,5 +79,5 @@ This project is licensed under the Apache License - see the [LICENSE](LICENSE) f
 [glide.lock]: https://github.com/uber-go/zap/blob/master/glide.lock
 [zap]: https://github.com/uber-go/zap
 [me]: https://github.com/dougEfresh
-[report-img]: https://goreportcard.com/badge/github.com/dougEfresh/gtoggl-api
-[report]: https://goreportcard.com/report/github.com/dougEfresh/gtoggl-api
+[report-img]: https://goreportcard.com/badge/github.com/tumb1er/gtoggl-api
+[report]: https://goreportcard.com/report/github.com/tumb1er/gtoggl-api

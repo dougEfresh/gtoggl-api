@@ -10,7 +10,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/dougEfresh/gtoggl-api/gthttp"
+	"github.com/tumb1er/gtoggl-api/gthttp"
 )
 
 type TestUtil struct {
