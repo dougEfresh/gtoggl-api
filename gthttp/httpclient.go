@@ -187,11 +187,16 @@ func (c *TogglHttpClient) authenticate(key string) ([]byte, error) {
 		b, _ := ioutil.ReadAll(resp.Body)
 		return nil, &TogglError{Code: resp.StatusCode, Status: resp.Status, Msg: string(b)}
 	}
+	hasSessionCookie := false
 	for _, value := range resp.Cookies() {
 		if value.Name == SessionCookieName {
 			c.infoLog.Printf("Setting Cookie\n")
 			c.cookie = value
+			hasSessionCookie = true
 		}
+	}
+	if !hasSessionCookie {
+		return nil, fmt.Errorf("Auth cookie %q not found on authentication response", SessionCookieName)
 	}
 
 	return nil, nil
