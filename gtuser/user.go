@@ -5,6 +5,7 @@ import (
 	"github.com/tumb1er/gtoggl-api/gtclient"
 	"github.com/tumb1er/gtoggl-api/gthttp"
 	"github.com/tumb1er/gtoggl-api/gtproject"
+	"github.com/tumb1er/gtoggl-api/gttag"
 	"github.com/tumb1er/gtoggl-api/gtworkspace"
 )
 
@@ -18,6 +19,7 @@ type User struct {
 	Clients    gtclient.Clients       `json:"clients"`
 	Projects   gtproject.Projects     `json:"projects"`
 	Workspaces gtworkspace.Workspaces `json:"workspaces"`
+	Tags       gttag.Tags             `json:"tags"`
 }
 type UserUpdate struct {
 	Email    string `json:"email"`
