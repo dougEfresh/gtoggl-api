@@ -16,7 +16,7 @@ type Workspaces []Workspace
 
 const Endpoint = "/workspaces"
 
-//Return a Workspace Cilent. An error is also returned when some configuration option is invalid
+//Return a Workspace Client. An error is also returned when some configuration option is invalid
 //    tc,err := gtoggl.NewClient("token")
 //    wsc,err := gtoggl.NewWorkspaceClient(tc)
 func NewClient(tc *gthttp.TogglHttpClient) *WorkspaceClient {
