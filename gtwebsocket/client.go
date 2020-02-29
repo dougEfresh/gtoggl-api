@@ -43,23 +43,13 @@ type TogglWebsocketClient struct {
 	onTimeEntryAction OnTimeEntryActionCallback
 }
 
-func NewClient(token string) (*TogglWebsocketClient, error) {
-	client := &TogglWebsocketClient{
+func NewClient(token string) *TogglWebsocketClient {
+	return &TogglWebsocketClient{
 		url:               DefaultUrl,
 		token:             token,
 		onPing:            defaultOnPing,
 		onTimeEntryAction: defaultOnTimeEntryAction,
 	}
-	err := client.Dial()
-
-	if err != nil {
-		return nil, err
-	}
-	err = client.authenticate()
-	if err != nil {
-		return nil, err
-	}
-	return client, nil
 }
 
 func (c *TogglWebsocketClient) OnPing(callback OnPingCallback) {
@@ -84,16 +74,41 @@ func (c *TogglWebsocketClient) Dial() error {
 	return nil
 }
 
-func (c *TogglWebsocketClient) Listen(ctx context.Context) {
-	webSocketClosed := make(chan struct{})
+func (c *TogglWebsocketClient) Listen(ctx context.Context) error {
+	for {
+		if err := c.Dial(); err != nil {
+			return err
+		}
+		if err := c.authenticate(); err != nil {
+			return err
+		}
+
+		disconnected := make(chan error)
+		go func() {
+			disconnected <- c.listen(ctx)
+		}()
+
+		select {
+		case <-disconnected:
+			continue
+		case <-ctx.Done():
+			return nil
+		}
+	}
+}
+
+func (c *TogglWebsocketClient) listen(ctx context.Context) error {
+	webSocketClosed := make(chan error)
 	messages := make(chan []byte)
 	go func() {
 		defer close(webSocketClosed)
 		for {
 			if mt, data, err := c.ws.ReadMessage(); err != nil {
 				log.Println("Read Websocket error:", err)
+				webSocketClosed <- err
 				if err = c.ws.Close(); err != nil {
 					log.Println("Close Websocket error:", err)
+
 				}
 				return
 			} else {
@@ -110,13 +125,17 @@ func (c *TogglWebsocketClient) Listen(ctx context.Context) {
 			if err := c.ws.Close(); err != nil {
 				log.Println("Websocket close error:", err)
 			}
-			return
-		case <-webSocketClosed:
+			return nil
+		case err := <-webSocketClosed:
 			log.Println("Websocket closed")
-			return
+			return err
 		case msg := <-messages:
 			if err := c.handleMessage(msg); err != nil {
 				log.Println("Message handle error:", err)
+				if err := c.ws.Close(); err != nil {
+					log.Println("Websocket close error:", err)
+				}
+				return err
 			}
 		}
 	}
