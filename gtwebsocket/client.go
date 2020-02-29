@@ -26,7 +26,7 @@ func defaultOnPing(msg MsgPing) error {
 	if !msg.OK() {
 		return fmt.Errorf("ping: something wrong: %s", msg.Type)
 	}
-	log.Println("pong")
+	log.Println("ping")
 	return nil
 }
 
@@ -141,7 +141,12 @@ func (c *TogglWebsocketClient) handlePingMessage(msg []byte) error {
 	if err := json.Unmarshal(msg, &pingMsg); err != nil {
 		return err
 	}
-	return c.onPing(pingMsg)
+	if err := c.onPing(pingMsg); err != nil {
+		return err
+	} else {
+		pingMsg.Type = "pong"
+		return c.ws.WriteJSON(pingMsg)
+	}
 }
 
 func (c *TogglWebsocketClient) authenticate() error {
