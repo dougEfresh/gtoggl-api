@@ -5,19 +5,20 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/throttled/throttled"
-	"github.com/throttled/throttled/store/memstore"
 	"io/ioutil"
 	"net/http"
 	"strconv"
 	"time"
+
+	"github.com/throttled/throttled"
+	"github.com/throttled/throttled/store/memstore"
 )
 
 const (
 	DefaultAuthPassword       = "api_token"
 	DefaultMaxRetries         = 5
 	DefaultGzipEnabled        = false
-	DefaultUrl                = "https://www.toggl.com/api/v8"
+	DefaultUrl                = "https://api.track.toggl.com/api/v8"
 	DefaultVersion            = "v8"
 	SessionCookieName         = "__Host-timer-session"
 	defaultBucket             = "toggl"

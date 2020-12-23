@@ -3,6 +3,7 @@ package gtproject
 import (
 	"encoding/json"
 	"fmt"
+
 	"github.com/dougEfresh/gtoggl-api/gthttp"
 )
 
@@ -35,8 +36,9 @@ type ProjectClient struct {
 	endpoint string
 }
 
-func (tc *ProjectClient) List() (Projects, error) {
-	body, err := tc.thc.GetRequest(tc.endpoint)
+// List returns all projects in a particular workspace.
+func (tc *ProjectClient) List(wid int) (Projects, error) {
+	body, err := tc.thc.GetRequest(fmt.Sprintf("%s/%s/%d/projects", tc.thc.Url, "workspaces", wid))
 	var projects []Project
 	if err != nil {
 		return nil, err
